@@ -6,11 +6,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool canBeDivided(const vector<size_t>& peoples,size_t K,size_t sum)
+bool canBeDivided(vector<size_t> peoples,size_t K,size_t sum)
 {
     size_t currentSum=0;
     size_t teams=0;
-    for(size_t people:peoples)
+    for(auto people:peoples)
     {
         currentSum+=people;
         if(currentSum>sum)
@@ -26,24 +26,28 @@ bool canBeDivided(const vector<size_t>& peoples,size_t K,size_t sum)
     return true;
 }
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
     size_t N,K;
     cin>>N>>K;
-    
     vector<size_t> peoples;
     vector<size_t> teams(K);
+    size_t left=0;
+    size_t right=0;
     for(size_t i=0;i<N;i++)
     {
         size_t people;
+        right+=people;
         cin>>people;
+        
+        if(left<people)
+        {
+            left=people; 
+        }
         peoples.push_back(people);
     }
-    size_t left = *max_element(peoples.begin(),peoples.end());
-    size_t right = accumulate(peoples.begin(),peoples.end(),0);
-    // cout<<left<<endl;
-    // cout<<right<<endl;
-    size_t answer=peoples[0];
+    // size_t left = *max_element(peoples.begin(),peoples.end());
+    // size_t right = accumulate(peoples.begin(),peoples.end(),0);
+   
+    size_t answer=0;
     while(left<=right)
     {
         size_t mid = left + (right-left)/2;
