@@ -130,7 +130,7 @@ void remove(Node* &root, int x) {
         else{
             root = child;
         }
-        free(current);
+        free(current); // doesnt invoke destructor, it is used to delete pointers declared using malloc() function
     }
 }
 
