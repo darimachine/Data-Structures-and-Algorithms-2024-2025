@@ -47,7 +47,7 @@ struct Edge{
 
 };
 
-DisjointSet kruskalMakeMPD(vector<vector<pair<size_t,size_t>>>& graph,vector<Edge>& edges,size_t V,size_t E) {
+DisjointSet kruskalMakeMPD(vector<Edge>& edges,size_t V,size_t E) {
    
     DisjointSet ds(V);
     for(size_t i=0;i<E;i++) {
@@ -78,7 +78,7 @@ void countComponentsVertex(DisjointSet& ds,unordered_map<size_t,size_t>& vertexI
     //     cout<<key<<" "<<value<<endl;
     // }
 }
-size_t countResult(vector<vector<pair<size_t,size_t>>>& graph,unordered_map<size_t,size_t>& vertexInComponent,size_t K,DisjointSet& ds) {
+size_t countResult(unordered_map<size_t,size_t>& vertexInComponent,size_t K,DisjointSet& ds) {
     size_t result =0;
     unordered_set<size_t> visited;
     for(auto& [vertex,numVertexInComponent] : vertexInComponent) {
@@ -104,7 +104,6 @@ int main()
         
         size_t V,E,K;
         cin>>V>>E>>K;
-        vector<vector<pair<size_t,size_t>>> graph(V);
         vector<Edge> edges;
         for(size_t j=0;j<E;j++) {
             size_t u,v,w;
@@ -115,9 +114,9 @@ int main()
         // for(auto& el :edges){
         //     cout<<el.from<<" "<<el.to<<" "<<el.weight<<endl;
         // }
-        DisjointSet ds = kruskalMakeMPD(graph,edges,V,E);
+        DisjointSet ds = kruskalMakeMPD(edges,V,E);
         countComponentsVertex(ds,vertexInComponent);
-        cout<<countResult(graph,vertexInComponent,K,ds)<<endl;
+        cout<<countResult(vertexInComponent,K,ds)<<endl;
         
     }
     
