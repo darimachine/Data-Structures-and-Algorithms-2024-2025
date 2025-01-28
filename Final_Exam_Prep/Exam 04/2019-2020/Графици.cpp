@@ -34,9 +34,9 @@ int main() {
     for(auto& el : times){
         size_t time= el.time;
         int value = el.value;
-        active+=value;
-        if(value ==0) {
-            intervalCounter[time]=active;    
+        active += value;
+        if(value == 0) {
+            intervalCounter[time] = active;    
         }
         
     }
@@ -45,6 +45,6 @@ int main() {
         cout<<intervalCounter[q]<<" ";
         queries.pop();
     }
-    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    
     return 0;
 }
